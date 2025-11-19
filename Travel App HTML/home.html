@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Messaging Webpage Mockup</title>
+  <style>
+    :root{
+      --bg:#f3f4f6; --card:#ffffff; --muted:#6b7280; --accent:#2563eb;
+      --success:#10b981; --danger:#ef4444; --glass: rgba(255,255,255,0.6);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body { margin:0; height:100vh; background:linear-gradient(180deg,#eef2ff, #f8fafc); color:#111827; display:flex; align-items:stretch; }
+
+    /* Layout */
+    .app { margin:auto; width:100%; max-width:1200px; height:92vh; display:grid; grid-template-columns:320px 1fr 320px; gap:18px; padding:18px; }
+    .panel { background:var(--card); border-radius:12px; box-shadow:0 6px 20px rgba(15,23,42,0.06); overflow:hidden; display:flex; flex-direction:column; }
+    header.app-top{ grid-column:1/-1; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 18px; background:transparent; }
+    header.app-top h1{ margin:0; font-size:18px; }
+    .left { padding:12px; min-width:0; }
+    .center { padding:12px; display:flex; flex-direction:column; }
+    .right { padding:12px; border-left:1px solid rgba(0,0,0,0.03); }
+
+    /* Sidebar */
+    .topbar { display:flex; align-items:center; gap:10px; padding:8px 6px 12px 6px; }
+    .search { display:flex; gap:8px; align-items:center; padding:8px; background:#f8fafc; border-radius:8px; }
+    .search input { border:none; outline:none; background:transparent; min-width:0; width:100%; }
+    .chats { overflow:auto; padding:6px; display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+    .chat-item { display:flex; gap:10px; padding:10px; align-items:center; border-radius:10px; cursor:pointer; }
+    .chat-item.active { background:linear-gradient(90deg, rgba(37,99,235,0.08), rgba(37,99,235,0.03)); }
+    .avatar { width:46px; height:46px; border-radius:10px; background:#ddd; display:flex; align-items:center; justify-content:center; font-weight:600; color:#374151; }
+    .chat-meta { min-width:0; flex:1; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .chat-meta .left { min-width:0; }
+    .chat-meta .name { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .chat-meta .preview { color:var(--muted); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .badge { background:var(--accent); color:white; padding:2px 8px; border-radius:999px; font-size:12px; }
+
+    /* Center chat window */
+    .chat-header { display:flex; align-items:center; gap:12px; padding:12px; border-bottom:1px solid rgba(0,0,0,0.04); }
+    .messages { flex:1; overflow:auto; padding:18px; display:flex; flex-direction:column; gap:12px; background:linear-gradient(180deg, transparent, rgba(0,0,0,0.01)); }
+    .msg-row { display:flex; gap:8px; align-items:flex-end; max-width:80%; }
+    .msg-row.me { margin-left:auto; justify-content:flex-end; }
+    .bubble { padding:10px 12px; border-radius:12px; background:#fff; box-shadow:0 1px 1px rgba(0,0,0,0.02); }
+    .bubble.me { background:linear-gradient(90deg,#2563eb,#60a5fa); color:white; }
+    .meta { font-size:11px; color:var(--muted); margin-top:6px; display:flex; gap:8px; align-items:center; }
+    .date-divider { align-self:center; background:#e6eefc; color:#0f172a; padding:6px 10px; border-radius:999px; font-size:12px; }
+
+    /* input bar */
+    .input-bar { padding:12px; border-top:1px solid rgba(0,0,0,0.04); display:flex; gap:8px; align-items:center; }
+    .input-bar textarea { flex:1; min-height:44px; max-height:120px; padding:10px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); resize:none; outline:none; }
+    .icon-btn { background:transparent; border:none; cursor:pointer; padding:8px; border-radius:8px; }
+    .send-btn { background:var(--accent); color:white; border:none; padding:10px 12px; border-radius:10px; cursor:pointer; }
+
+    /* attachments preview */
+    .previews { display:flex; gap:8px; padding:8px 12px 0 12px; flex-wrap:wrap; }
+    .preview { width:86px; height:86px; border-radius:8px; overflow:hidden; background:#111827; display:flex; align-items:center; justify-content:center; position:relative; }
+    .preview img, .preview video{ width:100%; height:100%; object-fit:cover; display:block; }
+    .preview .remove { position:absolute; top:6px; right:6px; background:rgba(0,0,0,0.6); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:13px; }
+
+    /* right details panel */
+    .details { padding:12px; display:flex; gap:12px; flex-direction:column; align-items:start; }
+    .details h3 { margin:0; }
+    .media-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; width:100%; margin-top:6px; }
+
+    /* toast */
+    .toast { position:fixed; right:18px; bottom:18px; background:#111827; color:white; padding:10px 14px; border-radius:8px; box-shadow:0 8px 30px rgba(2,6,23,0.4); display:none; z-index:9999; }
+
+    /* responsive */
+    @media (max-width:1000px){
+      .app { grid-template-columns:1fr; padding:12px; }
+      .right { display:none; }
+      .left { order:1; }
+      .center { order:2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="Messaging app">
+    <header class="app-top" style="grid-column:1/-1">
+      <h1>ChatApp — Mockup</h1>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button class="icon-btn" title="New chat" onclick="notify('New chat clicked')">➕</button>
+        <button class="icon-btn" title="Settings" onclick="notify('Settings clicked')">⚙️</button>
+      </div>
+    </header>
+
+    <!-- LEFT: Sidebar -->
+    <aside class="panel left" aria-label="Conversations">
+      <div class="topbar">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="avatar">MM</div>
+          <div>
+            <div style="font-weight:700">Mera Man</div>
+            <div style="font-size:12px;color:var(--muted)">Online</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:0 12px 12px 12px">
+        <div class="search">
+          🔍 <input id="chat-search" placeholder="Search chats" aria-label="Search chats" oninput="filterChats()" />
+        </div>
+      </div>
+
+      <div class="chats" id="chat-list" role="list">
+        <!-- chat items injected by JS -->
+      </div>
+    </aside>
+
+    <!-- CENTER: Chat Window -->
+    <main class="panel center" aria-live="polite">
+      <div class="chat-header" id="chat-header">
+        <!-- header populated by JS -->
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div class="avatar" id="chat-avatar">AB</div>
+          <div>
+            <div id="chat-name" style="font-weight:700">Select a chat</div>
+            <div id="chat-status" style="font-size:12px;color:var(--muted)">—</div>
+          </div>
+        </div>
+        <div style="margin-left:auto; display:flex; gap:8px;">
+          <button class="icon-btn" onclick="toggleDetails()">ℹ️</button>
+          <button class="icon-btn" onclick="simulateIncoming()">Simulate Incoming</button>
+        </div>
+      </div>
+
+      <div class="messages" id="messages" tabindex="0" aria-label="Messages">
+        <div style="color:var(--muted);text-align:center">No conversation selected — choose a chat on the left or create a new one.</div>
+      </div>
+
+      <div id="attachments-area" style="display:none;">
+        <div class="previews" id="previews"></div>
+      </div>
+
+      <div class="input-bar" role="region" aria-label="Message composer">
+        <button class="icon-btn" title="Emoji" onclick="toggleEmoji()">😊</button>
+
+        <textarea id="message-input" placeholder="Type a message" aria-label="Message input" oninput="onTyping()" ></textarea>
+
+        <input id="file-input" type="file" accept="image/*,video/*,application/pdf" multiple style="display:none" onchange="handleFiles(this.files)" />
+
+        <button class="icon-btn" title="Attach" onclick="document.getElementById('file-input').click()">📎</button>
+
+        <button class="send-btn" title="Send" onclick="sendMessage()">Send ➤</button>
+      </div>
+    </main>
+
+    <!-- RIGHT: Details panel -->
+    <aside class="panel right" id="details-panel" aria-label="Contact details">
+      <div class="details">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="avatar" id="detail-avatar">AB</div>
+          <div>
+            <h3 id="detail-name">No chat selected</h3>
+            <div id="detail-status" style="color:var(--muted); font-size:13px">—</div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px; width:100%;">
+          <strong>Shared media</strong>
+          <div class="media-grid" id="detail-media">
+            <!-- media thumbnails -->
+          </div>
+        </div>
+
+        <div style="margin-top:10px; width:100%;">
+          <strong>Actions</strong>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button onclick="notify('Muted')">Mute</button>
+            <button onclick="notify('Blocked')">Block</button>
+            <button onclick="clearChat()">Clear Chat</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Notification</div>
+  </div>
+
+  <script>
+    // ---------- Mock data ----------
+    const mockChats = [
+      { id: 'c1', name: 'Alice', avatar: 'AL', last: 'Hey, are you there?', lastTime: '11:02', unread:2, status:'online' },
+      { id: 'c2', name: 'Bob', avatar: 'BO', last: 'Sent a file', lastTime: '09:40', unread:0, status:'last seen 2h ago' },
+      { id: 'c3', name: 'Design Team', avatar: 'DT', last: 'New mockups uploaded', lastTime: 'Yesterday', unread:5, status:'group' },
+      { id: 'c4', name: 'Charlie', avatar: 'CH', last: 'Okay, thanks!', lastTime: 'Mon', unread:0, status:'last seen 3d ago' },
+    ];
+
+    // message store: key = chatId, value = array of messages
+    const messagesStore = {
+      c1: [
+        {id:1, from:'them', text:'Hi, can you check the doc?', time:'10:58'},
+        {id:2, from:'me', text:'Yes, give me 10 mins', time:'11:01', seen:true},
+      ],
+      c2: [
+        {id:1, from:'them', text:'I sent the pdf.', time:'09:30'},
+        {id:2, from:'me', text:'Got it, thanks!', time:'09:35', seen:true},
+      ],
+      c3: [
+        {id:1, from:'them', text:'Uploaded the latest', time:'Yesterday', seen:true},
+      ],
+      c4: []
+    };
+
+    let currentChat = null;
+    let typingTimer = null;
+    let attachments = []; // array of {file, url, type}
+
+    // ---------- UI setup ----------
+    const chatListEl = document.getElementById('chat-list');
+    const messagesEl = document.getElementById('messages');
+    const chatNameEl = document.getElementById('chat-name');
+    const chatAvatarEl = document.getElementById('chat-avatar');
+    const chatStatusEl = document.getElementById('chat-status');
+    const detailName = document.getElementById('detail-name');
+    const detailAvatar = document.getElementById('detail-avatar');
+    const detailStatus = document.getElementById('detail-status');
+    const detailMedia = document.getElementById('detail-media');
+    const previewsEl = document.getElementById('previews');
+    const attachmentsArea = document.getElementById('attachments-area');
+
+    function renderChats(){
+      chatListEl.innerHTML = '';
+      for(const c of mockChats){
+        const item = document.createElement('div');
+        item.className = 'chat-item';
+        item.dataset.id = c.id;
+        item.onclick = ()=> openChat(c.id);
+        if(currentChat === c.id) item.classList.add('active');
+        item.innerHTML = `
+          <div class="avatar">${escapeHtml(c.avatar)}</div>
+          <div class="chat-meta">
+            <div class="left">
+              <div class="name">${escapeHtml(c.name)}</div>
+              <div class="preview">${escapeHtml(c.last)}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;color:var(--muted)">${escapeHtml(c.lastTime)}</div>
+              ${c.unread ? `<div class="badge">${c.unread}</div>` : ''}
+            </div>
+          </div>
+        `;
+        chatListEl.appendChild(item);
+      }
+    }
+
+    function openChat(id){
+      currentChat = id;
+      // mark unread zero for demo purposes
+      const c = mockChats.find(x=>x.id===id);
+      if(c) c.unread = 0;
+      renderChats();
+
+      const msgs = messagesStore[id] || [];
+      chatAvatarEl.textContent = c.avatar;
+      chatNameEl.textContent = c.name;
+      chatStatusEl.textContent = c.status;
+      detailName.textContent = c.name;
+      detailAvatar.textContent = c.avatar;
+      detailStatus.textContent = c.status;
+
+      // render messages
+      messagesEl.innerHTML = '';
+      if(msgs.length===0){
+        const el = document.createElement('div');
+        el.style.color = 'var(--muted)';
+        el.style.textAlign = 'center';
+        el.textContent = 'No messages yet — send the first message.';
+        messagesEl.appendChild(el);
+      } else {
+        let lastDate = null;
+        msgs.forEach(m=>{
+          const row = document.createElement('div');
+          row.className = 'msg-row ' + (m.from === 'me' ? 'me' : 'them');
+
+          // optionally insert date divider if message has date text different
+          const md = document.createElement('div');
+          const bubble = document.createElement('div');
+          bubble.className = 'bubble ' + (m.from==='me' ? 'me' : '');
+          
+          if(m.media){
+            // image or video
+            if(m.media.type.startsWith('image')){
+              const img = document.createElement('img');
+              img.src = m.media.url;
+              img.alt = 'image';
+              img.style.maxWidth = '240px';
+              img.style.borderRadius = '8px';
+              bubble.appendChild(img);
+            } else if(m.media.type.startsWith('video')){
+              const vid = document.createElement('video');
+              vid.src = m.media.url;
+              vid.controls = true;
+              vid.style.maxWidth = '260px';
+              bubble.appendChild(vid);
+            } else {
+              const link = document.createElement('a');
+              link.href = m.media.url;
+              link.textContent = m.media.name;
+              link.target = '_blank';
+              bubble.appendChild(link);
+            }
+            if(m.text) {
+              const p = document.createElement('div'); p.textContent = m.text; p.style.marginTop = '8px';
+              bubble.appendChild(p);
+            }
+          } else {
+            bubble.textContent = m.text || '';
+          }
+
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.innerHTML = `<span>${m.time || ''}</span> ${(m.from==='me' && m.seen) ? '<span>✓✓</span>' : ''}`;
+
+          row.appendChild(bubble);
+          bubble.appendChild(meta);
+
+          messagesEl.appendChild(row);
+        });
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      // populate media in details panel
+      refreshDetailsMedia();
+    }
+
+    function refreshDetailsMedia(){
+      detailMedia.innerHTML = '';
+      const msgs = messagesStore[currentChat] || [];
+      const media = msgs.filter(m=>m.media).slice(-9).reverse();
+      for(const m of media){
+        const div = document.createElement('div');
+        div.style.width='100%'; div.style.height='64px'; div.style.background='#eee'; div.style.borderRadius='8px'; div.style.overflow='hidden';
+        if(m.media.type.startsWith('image')){
+          const img = document.createElement('img'); img.src = m.media.url; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
+          div.appendChild(img);
+        } else if(m.media.type.startsWith('video')){
+          const v = document.createElement('video'); v.src = m.media.url; v.controls = false; v.style.width='100%'; v.style.height='100%'; v.style.objectFit='cover';
+          div.appendChild(v);
+        } else {
+          div.textContent = m.media.name;
+        }
+        detailMedia.appendChild(div);
+      }
+    }
+
+    // ---------- sending messages ----------
+    function sendMessage(){
+      if(!currentChat) { notify('No chat selected'); return; }
+      const ta = document.getElementById('message-input');
+      const text = ta.value.trim();
+      if(!text && attachments.length===0) { notify('Cannot send empty message'); return; }
+
+      const msgs = messagesStore[currentChat] = messagesStore[currentChat] || [];
+      const m = { id: Date.now(), from:'me', text: text || '', time: timeNow(), seen:false };
+      if(attachments.length) {
+        // if multiple attachments, we'll attach the first and send rest as separate messages for demo
+        // attach first to this message
+        m.media = attachments[0];
+      }
+      msgs.push(m);
+
+      // if more attachments, push them as separate messages
+      for(let i=1;i<attachments.length;i++){
+        msgs.push({ id: Date.now()+i, from:'me', text:'', time: timeNow(), media: attachments[i], seen:false });
+      }
+
+      // clear composer
+      ta.value = ''; attachments = []; previewsEl.innerHTML=''; attachmentsArea.style.display='none';
+
+      openChat(currentChat);
+      notify('Message sent');
+
+      // simulate delivered + reply
+      setTimeout(()=> {
+        m.seen = true;
+        openChat(currentChat);
+      }, 1000);
+
+      setTimeout(()=> {
+        // simulated reply from them
+        const reply = { id: Date.now()+999, from:'them', text: 'Nice — got it!', time: timeNow() };
+        messagesStore[currentChat].push(reply);
+        openChat(currentChat);
+        notify(`New message from ${getChatName(currentChat)}`);
+      }, 1800);
+    }
+
+    function handleFiles(files){
+      attachments = attachments.slice(0,0); // reset
+      previewsEl.innerHTML = '';
+      const max = 5;
+      if(files.length > max){
+        notify(`You can attach up to ${max} files`);
+      }
+      const list = Array.from(files).slice(0,max);
+      list.forEach((f,i)=>{
+        const url = URL.createObjectURL(f);
+        const type = f.type || 'application/octet-stream';
+        const item = { file: f, url, type, name: f.name };
+        attachments.push(item);
+
+        const pr = document.createElement('div'); pr.className='preview';
+        const removeBtn = document.createElement('div'); removeBtn.className='remove'; removeBtn.innerHTML='✕';
+        removeBtn.onclick = ()=> { URL.revokeObjectURL(item.url); attachments = attachments.filter(x=>x!==item); pr.remove(); if(attachments.length===0) attachmentsArea.style.display='none'; };
+        pr.appendChild(removeBtn);
+
+        if(type.startsWith('image')) {
+          const img = document.createElement('img'); img.src = url; img.alt = f.name;
+          pr.appendChild(img);
+        } else if(type.startsWith('video')) {
+          const v = document.createElement('video'); v.src = url; v.muted=true; v.loop=true; v.autoplay=true; pr.appendChild(v);
+        } else {
+          const icon = document.createElement('div'); icon.style.color='#fff'; icon.textContent = 'FILE'; pr.appendChild(icon);
+        }
+        previewsEl.appendChild(pr);
+        attachmentsArea.style.display='block';
+      });
+    }
+
+    // ---------- small utilities ----------
+    function timeNow(){ const d=new Date(); return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
+    function notify(text){ const t = document.getElementById('toast'); t.textContent = text; t.style.display = 'block'; t.style.opacity = 1; setTimeout(()=>{ t.style.opacity = 0; setTimeout(()=> t.style.display='none', 300) }, 2000); }
+
+    function getChatName(id){ const c = mockChats.find(x=>x.id===id); return c ? c.name : 'Unknown'; }
+
+    function simulateIncoming(){
+      if(!currentChat) { notify('Select a chat to receive a simulated message'); return; }
+      const msgs = messagesStore[currentChat] = messagesStore[currentChat] || [];
+      const m = { id:Date.now(), from:'them', text:'This is a simulated incoming message', time: timeNow() };
+      msgs.push(m);
+      openChat(currentChat);
+      notify('Simulated incoming message');
+    }
+
+    function clearChat(){
+      if(!currentChat) return notify('No chat selected');
+      messagesStore[currentChat] = [];
+      openChat(currentChat);
+      notify('Chat cleared');
+    }
+
+    // search filter
+    function filterChats(){
+      const q = document.getElementById('chat-search').value.toLowerCase();
+      const items = chatListEl.querySelectorAll('.chat-item');
+      items.forEach(it=>{
+        const id = it.dataset.id;
+        const c = mockChats.find(x=>x.id===id);
+        if(!c) return;
+        const match = c.name.toLowerCase().includes(q) || c.last.toLowerCase().includes(q);
+        it.style.display = match ? 'flex' : 'none';
+      });
+    }
+
+    function toggleDetails(){
+      const d = document.getElementById('details-panel');
+      d.style.display = (d.style.display === 'none' || d.style.display==='') ? 'block' : 'none';
+    }
+
+    // typing indicator (simulated)
+    function onTyping(){
+      if(!currentChat) return;
+      const status = document.getElementById('chat-status');
+      status.textContent = 'typing…';
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(()=> status.textContent = mockChats.find(x=>x.id===currentChat).status, 800);
+    }
+
+    // emoji toggle (simple quick insert)
+    function toggleEmoji(){
+      const ta = document.getElementById('message-input');
+      const emoji = prompt('Enter emoji (or paste):', '🙂');
+      if(emoji !== null) {
+        ta.value = ta.value + emoji;
+        ta.focus();
+      }
+    }
+
+    // helper escape
+    function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+
+    // expose simple helper to remove previews
+    function handleFilesFromInput(ev){
+      handleFiles(ev.target.files);
+    }
+
+    // ---------- init ----------
+    renderChats();
+    // open first chat by default
+    openChat(mockChats[0].id);
+
+    // keyboard send: ctrl/enter or meta+enter
+    document.addEventListener('keydown', (e)=>{
+      if((e.key==='Enter' && (e.ctrlKey || e.metaKey)) ){
+        e.preventDefault(); sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create post</title>
+  </head>
+  <body>
+    <h2>Create Post</h2>
+    <hr />
+    <br />
+    <form action="">
+      <label for="title">Title: </label>
+      <input
+        id="title"
+        type="text"
+        required
+        placeholder="Enter title for the post"
+      />
+      <br /><br />
+
+      <label for="image">Upload Images/ Video: </label>
+      <input id="image" type="file" accept="image/*, video/*" multiple />
+
+      <p style="padding-left: 20px; color: rgb(209, 15, 15)">
+        You can upload a maximum of 5 images.
+      </p>
+
+      <label for="">Description </label><br />
+      <textarea name="" id="" style="width: 350px; height: 100px"></textarea>
+      <br /><br />
+
+      <label>Visibility:</label> <br />
+
+      <input type="radio" name="visibility" id="private" />
+      <label for="private">Private</label>
+      <br />
+
+      <input type="radio" name="visibility" id="public" />
+      <label for="public">Public</label>
+      <br /> <br>
+
+      <button type="submit">Post</button>
+    </form>
+  </body>
+</html>
