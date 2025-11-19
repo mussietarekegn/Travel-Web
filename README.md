@@ -1,7 +1,8 @@
 # Travel app made by:
 
-1. Mussie Tadesse
-2. Mussie Ferede
-3. Mussie Tarekegn
-4. Meheretabe Abayneh
+
+1. Mussie Ferede
+2. Mussie Tarekegn
+3. Meheretabe Abayneh
+4. Mussie Tadesse
 5. Mahder Ashenafi
