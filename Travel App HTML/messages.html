@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Messaging Page</title>
+  </head>
+
+  <body style="font-family: Arial; margin: 0">
+    <!-- Header -->
+    <div
+      style="background: #f0f0f0; padding: 15px; border-bottom: 1px solid #ccc"
+    >
+      <h2 style="margin: 0">Message</h2>
+    </div>
+
+    <div style="display: flex; height: 90vh">
+      <!-- LEFT SIDEBAR -->
+      <div style="width: 25%; border-right: 1px solid #ccc; padding: 10px">
+        <!-- User Info -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+          "
+        >
+          <div
+            style="
+              width: 45px;
+              height: 45px;
+              background: #ddd;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+            "
+          >
+            MM
+          </div>
+          <div>
+            <div style="font-weight: bold">Mera</div>
+            <div style="font-size: 12px; color: gray">Online</div>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <input
+          type="text"
+          placeholder="Search chats"
+          style="width: 100%; padding: 6px; margin-bottom: 10px"
+        />
+
+        <hr />
+
+        <!-- Chat List -->
+        <div>
+          <!-- Chat Item -->
+          <div
+            style="
+              padding: 10px;
+              border-bottom: 1px solid #eee;
+              cursor: pointer;
+            "
+          >
+            <strong>John Doe</strong><br />
+            <span style="font-size: 12px; color: gray">Hey, are you free?</span>
+          </div>
+
+          <div
+            style="
+              padding: 10px;
+              border-bottom: 1px solid #eee;
+              cursor: pointer;
+            "
+          >
+            <strong>Group Chat</strong><br />
+            <span style="font-size: 12px; color: gray"
+              >You: Sure, let's go.</span
+            >
+          </div>
+
+          <div
+            style="
+              padding: 10px;
+              border-bottom: 1px solid #eee;
+              cursor: pointer;
+            "
+          >
+            <strong>Alex</strong><br />
+            <span style="font-size: 12px; color: gray">Typing...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CHAT WINDOW -->
+      <div style="width: 50%; display: flex; flex-direction: column">
+        <!-- Chat Header -->
+        <div
+          style="
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          "
+        >
+          <div
+            style="
+              width: 40px;
+              height: 40px;
+              background: #ddd;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            JD
+          </div>
+
+          <div>
+            <strong>John Doe</strong><br />
+            <span style="font-size: 12px; color: gray">Online</span>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div style="flex: 1; padding: 15px; overflow-y: auto">
+          <!-- Incoming message -->
+          <div style="margin-bottom: 10px">
+            <div
+              style="
+                display: inline-block;
+                background: #eee;
+                padding: 8px 12px;
+                border-radius: 8px;
+                max-width: 70%;
+              "
+            >
+              Hey! How are you?
+            </div>
+          </div>
+
+          <!-- Outgoing -->
+          <div style="text-align: right; margin-bottom: 10px">
+            <div
+              style="
+                display: inline-block;
+                background: #d1f5d3;
+                padding: 8px 12px;
+                border-radius: 8px;
+                max-width: 70%;
+              "
+            >
+              I'm good, you?
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Bar -->
+        <div
+          style="
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            display: flex;
+            gap: 10px;
+          "
+        >
+          <input
+            type="text"
+            placeholder="Type a message..."
+            style="flex: 1; padding: 8px"
+          />
+          <button style="padding: 8px 12px">Send</button>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL (DETAILS) -->
+      <div style="width: 25%; border-left: 1px solid #ccc; padding: 10px">
+        <h3 style="margin-top: 0">Chat Details</h3>
+
+        <div style="display: flex; align-items: center; gap: 10px">
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #ddd;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            JD
+          </div>
+
+          <div>
+            <strong>John Doe</strong><br />
+            <span style="font-size: 12px; color: gray"
+              >Last seen 5 mins ago</span
+            >
+          </div>
+        </div>
+
+        <hr />
+
+        <h4>Bio</h4>
+        <p style="color: gray">No shared bio yet.</p>
+
+        <hr />
+
+        <h4>Actions</h4>
+        <button style="margin-bottom: 5px">Mute Chat</button><br />
+        <button style="margin-bottom: 5px">Block User</button><br />
+        <button style="margin-bottom: 5px">Clear Chat</button>
+      </div>
+    </div>
+  </body>
+</html>
