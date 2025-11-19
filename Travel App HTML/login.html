@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; }
+        label { margin-top: 10px; }
+        input { margin-bottom: 10px; padding: 8px; }
+        
+        /* IMPROVEMENT: Added Focus State for Accessibility */
+        input:focus, button:focus { outline: 2px solid #0056b3; }
+        
+        button { padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        
+        /* IMPROVEMENT: Style for error messages */
+        .error-message { color: red; margin-bottom: 10px; display: none; /* Toggle via JS/Backend */ }
+    </style>
+</head>
+<body>
+    <h2>Login</h2>
+
+    <div class="error-message">Invalid username or password.</div>
+
+    <form action="/login" method="POST">
+        <input type="hidden" name="_csrf" value="SERVER_GENERATED_TOKEN_HERE">
+
+        <label for="username">Username or Email:</label>
+        <input type="text" id="username" name="username" autocomplete="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+    <p><a href="signup.html">Sign up</a> | <a href="forgot-password.html">Forgot password?</a></p>
+</body>
+</html>
+<!-- login.html -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; }
+        label { margin-top: 10px; }
+        input { margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+        <label for="username">Username or Email:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+    <p><a href="signup.html">Sign up</a> | <a href="forgot-password.html">Forgot password?</a></p>
+</body>
+</html> -->
