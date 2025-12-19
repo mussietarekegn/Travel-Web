@@ -3,24 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <title>Travel Journal - Landing Page</title>
+        <link rel="stylesheet" href="../css/landing-page.css" />
     </head>
-    <body>
-        <header>
-            <h1>Guzo : Travel Journal</h1>
-            <img
-                src="./images/logo.jpeg"
-                alt="App Logo"
-                width="80"
-                height="80"
-            />
 
-            <nav>
-                <a href="home.html">Home</a> |
-                <a href="discover.html">Discover</a> |
-                <a href="login.html">Login</a> |
-                <a href="signup.html">Sign Up</a> |
+    <body>
+        <header class="header">
+            <img src="../images/logo.jpeg" alt="App Logo" class="logo" />
+            <h1 class="title">Guzo : Travel Journal</h1>
+
+            <nav class="nav">
+                <a href="home.html">Home</a>
+                <a href="discover.html">Discover</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
             </nav>
         </header>
+
         <hr />
 
         <section>
@@ -42,32 +40,32 @@
             <a href="home.html">Get Started</a>
         </section>
         <hr />
-        <section>
+        <section class="features">
             <h2>Features</h2>
 
-            <h3>Travel Journals</h3>
-            <p>
-                Log your trips, write daily entries, and upload photos, videos,
-                and voice notes.
-            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Travel Journals</h3>
+                    <p>
+                        Log your trips, write daily entries, and upload media.
+                    </p>
+                </div>
 
-            <h3>Discover New Destinations</h3>
-            <p>
-                Explore stories, trips, and trending travel journals from around
-                the world.
-            </p>
+                <div class="feature-card">
+                    <h3>Discover Destinations</h3>
+                    <p>Explore trending stories from travelers worldwide.</p>
+                </div>
 
-            <h3>Social Interaction</h3>
-            <p>
-                Connect with other travelers through likes, comments, follows,
-                and messaging.
-            </p>
+                <div class="feature-card">
+                    <h3>Social Interaction</h3>
+                    <p>Like, comment, follow, and message other travelers.</p>
+                </div>
 
-            <h3>Privacy & Security</h3>
-            <p>
-                Choose public or private journaling, with secure data backup and
-                encryption.
-            </p>
+                <div class="feature-card">
+                    <h3>Privacy & Security</h3>
+                    <p>Control who sees your journals with secure backups.</p>
+                </div>
+            </div>
         </section>
 
         <hr />
