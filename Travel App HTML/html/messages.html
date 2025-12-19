@@ -1,220 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Messaging Page</title>
+    <link rel="stylesheet" href="../css/messages.css" />
   </head>
 
-  <body style="font-family: Arial; margin: 0">
+  <body>
     <!-- Header -->
-    <div
-      style="background: #f0f0f0; padding: 15px; border-bottom: 1px solid #ccc"
-    >
-      <h2 style="margin: 0">Message</h2>
-    </div>
+    <header class="header">
+      <h2>Messages</h2>
+    </header>
 
-    <div style="display: flex; height: 90vh">
+    <!-- Main Layout -->
+    <div class="chat-layout">
       <!-- LEFT SIDEBAR -->
-      <div style="width: 25%; border-right: 1px solid #ccc; padding: 10px">
+      <aside class="sidebar">
         <!-- User Info -->
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-          "
-        >
-          <div
-            style="
-              width: 45px;
-              height: 45px;
-              background: #ddd;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-weight: bold;
-            "
-          >
-            MM
-          </div>
+        <div class="user-info">
+          <div class="avatar">MM</div>
           <div>
-            <div style="font-weight: bold">Mera</div>
-            <div style="font-size: 12px; color: gray">Online</div>
+            <div class="username">Mera</div>
+            <div class="status online">Online</div>
           </div>
         </div>
 
         <!-- Search -->
-        <input
-          type="text"
-          placeholder="Search chats"
-          style="width: 100%; padding: 6px; margin-bottom: 10px"
-        />
-
-        <hr />
+        <input class="search" type="text" placeholder="Search chats" />
 
         <!-- Chat List -->
-        <div>
-          <!-- Chat Item -->
-          <div
-            style="
-              padding: 10px;
-              border-bottom: 1px solid #eee;
-              cursor: pointer;
-            "
-          >
-            <strong>John Doe</strong><br />
-            <span style="font-size: 12px; color: gray">Hey, are you free?</span>
+        <div class="chat-list">
+          <div class="chat-item active">
+            <strong>John Doe</strong>
+            <span>Hey, are you free?</span>
           </div>
 
-          <div
-            style="
-              padding: 10px;
-              border-bottom: 1px solid #eee;
-              cursor: pointer;
-            "
-          >
-            <strong>Group Chat</strong><br />
-            <span style="font-size: 12px; color: gray"
-              >You: Sure, let's go.</span
-            >
+          <div class="chat-item">
+            <strong>Group Chat</strong>
+            <span>You: Sure, let's go.</span>
           </div>
 
-          <div
-            style="
-              padding: 10px;
-              border-bottom: 1px solid #eee;
-              cursor: pointer;
-            "
-          >
-            <strong>Alex</strong><br />
-            <span style="font-size: 12px; color: gray">Typing...</span>
+          <div class="chat-item">
+            <strong>Alex</strong>
+            <span>Typing...</span>
           </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- MAIN CHAT WINDOW -->
-      <div style="width: 50%; display: flex; flex-direction: column">
+      <!-- MAIN CHAT -->
+      <main class="chat-main">
         <!-- Chat Header -->
-        <div
-          style="
-            padding: 15px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-          "
-        >
-          <div
-            style="
-              width: 40px;
-              height: 40px;
-              background: #ddd;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            JD
-          </div>
-
+        <div class="chat-header">
+          <div class="avatar">JD</div>
           <div>
-            <strong>John Doe</strong><br />
-            <span style="font-size: 12px; color: gray">Online</span>
+            <strong>John Doe</strong>
+            <div class="status online">Online</div>
           </div>
         </div>
 
         <!-- Messages -->
-        <div style="flex: 1; padding: 15px; overflow-y: auto">
-          <!-- Incoming message -->
-          <div style="margin-bottom: 10px">
-            <div
-              style="
-                display: inline-block;
-                background: #eee;
-                padding: 8px 12px;
-                border-radius: 8px;
-                max-width: 70%;
-              "
-            >
-              Hey! How are you?
-            </div>
+        <div class="messages">
+          <div class="message incoming">
+            Hey! How are you?
           </div>
 
-          <!-- Outgoing -->
-          <div style="text-align: right; margin-bottom: 10px">
-            <div
-              style="
-                display: inline-block;
-                background: #d1f5d3;
-                padding: 8px 12px;
-                border-radius: 8px;
-                max-width: 70%;
-              "
-            >
-              I'm good, you?
-            </div>
+          <div class="message outgoing">
+            I'm good, you?
           </div>
         </div>
 
-        <!-- Input Bar -->
-        <div
-          style="
-            padding: 10px;
-            border-top: 1px solid #ccc;
-            display: flex;
-            gap: 10px;
-          "
-        >
-          <input
-            type="text"
-            placeholder="Type a message..."
-            style="flex: 1; padding: 8px"
-          />
-          <button style="padding: 8px 12px">Send</button>
+        <!-- Input -->
+        <div class="chat-input">
+          <input type="text" placeholder="Type a message..." />
+          <button>Send</button>
         </div>
-      </div>
+      </main>
 
-      <!-- RIGHT PANEL (DETAILS) -->
-      <div style="width: 25%; border-left: 1px solid #ccc; padding: 10px">
-        <h3 style="margin-top: 0">Chat Details</h3>
+      <!-- RIGHT PANEL -->
+      <aside class="details">
+        <h3>Chat Details</h3>
 
-        <div style="display: flex; align-items: center; gap: 10px">
-          <div
-            style="
-              width: 50px;
-              height: 50px;
-              background: #ddd;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            JD
-          </div>
-
+        <div class="user-info">
+          <div class="avatar">JD</div>
           <div>
-            <strong>John Doe</strong><br />
-            <span style="font-size: 12px; color: gray"
-              >Last seen 5 mins ago</span
-            >
+            <strong>John Doe</strong>
+            <div class="status">Last seen 5 mins ago</div>
           </div>
         </div>
 
         <hr />
 
         <h4>Bio</h4>
-        <p style="color: gray">No shared bio yet.</p>
+        <p>No shared bio yet.</p>
 
         <hr />
 
         <h4>Actions</h4>
-        <button style="margin-bottom: 5px">Mute Chat</button><br />
-        <button style="margin-bottom: 5px">Block User</button><br />
-        <button style="margin-bottom: 5px">Clear Chat</button>
-      </div>
+        <button class="danger">Mute Chat</button>
+        <button class="danger">Block User</button>
+        <button class="danger">Clear Chat</button>
+      </aside>
     </div>
   </body>
 </html>
