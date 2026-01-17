@@ -1,95 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="../css/create_post.css" />
-        <title>Create post</title>
-    </head>
-    <body>
-        <div class="page-header">
-            <h2>Create Post</h2>
-            <hr />
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/create_post.css" />
+    <title>Create post</title>
+  </head>
+  <body>
+    <div class="page-header">
+      <h2>Create Post</h2>
+      <hr />
+    </div>
+
+    <div class="page-grid">
+      <!-- LEFT: form -->
+      <section class="card form-card">
+        <form>
+          <div class="form-row">
+            <label for="title">Title:</label>
+            <input
+              id="title"
+              class="wide"
+              type="text"
+              required
+              placeholder="Enter title for the post"
+            />
+          </div>
+
+          <div class="form-row">
+            <label>Upload Images / Video:</label>
+
+            <label for="image" class="file-upload"> Choose files </label>
+
+            <input
+              id="image"
+              class="file-input"
+              type="file"
+              accept="image/*, video/*"
+              multiple
+            />
+          </div>
+
+          <p class="note">You can upload a maximum of 5 images.</p>
+
+          <div class="form-row">
+            <label for="desc">Description</label>
+            <textarea
+              id="desc"
+              class="wide"
+              rows="5"
+              placeholder="Write something..."
+            ></textarea>
+          </div>
+
+          <div class="vis-options card">
+            <div class="meta-row">
+              <input type="radio" name="visibility" id="private" />
+              <label for="private">Private</label>
+            </div>
+            <div class="meta-row" style="margin-top: 8px">
+              <input type="radio" name="visibility" id="public" />
+              <label for="public">Public</label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <div class="left">
+              <span class="meta-row">Status: Draft</span>
+            </div>
+            <button type="submit">Post</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RIGHT: preview (thumbnails use float) -->
+      <aside class="card preview-card">
+        <h3 style="margin-top: 0">Media preview</h3>
+        <div class="thumbs">
+          <!-- thumbnails can be created dynamically via JS; static placeholders show how floats wrap -->
+          <div class="thumb">IMG 1</div>
+          <div class="thumb">IMG 2</div>
+          <div class="thumb">IMG 3</div>
+          <div class="thumb">IMG 4</div>
+          <div class="thumb">IMG 5</div>
         </div>
-
-        <div class="page-grid">
-            <!-- LEFT: form -->
-            <section class="card form-card">
-                <form>
-                    <div class="form-row">
-                        <label for="title">Title:</label>
-                        <input
-                            id="title"
-                            class="wide"
-                            type="text"
-                            required
-                            placeholder="Enter title for the post"
-                        />
-                    </div>
-
-                    <div class="form-row">
-                        <label>Upload Images / Video:</label>
-
-                        <label for="image" class="file-upload">
-                            Choose files
-                        </label>
-
-                        <input
-                            id="image"
-                            class="file-input"
-                            type="file"
-                            accept="image/*, video/*"
-                            multiple
-                        />
-                    </div>
-
-                    <p class="note">You can upload a maximum of 5 images.</p>
-
-                    <div class="form-row">
-                        <label for="desc">Description</label>
-                        <textarea
-                            id="desc"
-                            class="wide"
-                            rows="5"
-                            placeholder="Write something..."
-                        ></textarea>
-                    </div>
-
-                    <div class="vis-options card">
-                        <div class="meta-row">
-                            <input
-                                type="radio"
-                                name="visibility"
-                                id="private"
-                            />
-                            <label for="private">Private</label>
-                        </div>
-                        <div class="meta-row" style="margin-top: 8px">
-                            <input type="radio" name="visibility" id="public" />
-                            <label for="public">Public</label>
-                        </div>
-                    </div>
-
-                    <div class="form-actions">
-                        <div class="left">
-                            <span class="meta-row">Status: Draft</span>
-                        </div>
-                        <button type="submit">Post</button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- RIGHT: preview (thumbnails use float) -->
-            <aside class="card preview-card">
-                <h3 style="margin-top: 0">Media preview</h3>
-                <div class="thumbs">
-                    <!-- thumbnails can be created dynamically via JS; static placeholders show how floats wrap -->
-                    <div class="thumb">IMG 1</div>
-                    <div class="thumb">IMG 2</div>
-                    <div class="thumb">IMG 3</div>
-                    <div class="thumb">IMG 4</div>
-                    <div class="thumb">IMG 5</div>
-                </div>
-            </aside>
-        </div>
-    </body>
+      </aside>
+    </div>
+  </body>
 </html>

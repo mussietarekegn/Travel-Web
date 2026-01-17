@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-## Project is currently under progress in HTML branch.
-=======
 # ✈️ Travel Documentation & Guide App
 
 ## 👥 Made by:
@@ -61,4 +58,3 @@ This project is developed by:
 -   **Mahder Ashenafi**
 
 ---
->>>>>>> 56a7e043e8e096df4ccf64bb5211a3a038e67070

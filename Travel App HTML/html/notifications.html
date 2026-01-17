@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notifications & Reservations | AdventureHub</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="home.html">Tours</a>
+            <a href="companies.html">Companies</a>
+            <a href="notifications.html">My Reservations</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Your Notifications & Bookings</h2>
+
+        <div class="alert alert-success" id="payment-confirmation" style="display: block;">
+            ✅ **Payment Confirmed!** Your reservation (#12345) for the Alps Trek is fully secured. An email confirmation has been sent.
+        </div>
+
+        <hr>
+
+        <h3>Upcoming Reservations (3)</h3>
+
+        <div class="reservation-card">
+            <div class="res-details">
+                <h4>Patagonia Ice Fields Expedition</h4>
+                <p>Company: Wilderness Treks Co.</p>
+                <p>Date: **Dec 15, 2025** | Guests: 2</p>
+            </div>
+            <div class="action-btns">
+                <span class="res-status status-confirmed">CONFIRMED</span>
+                <button class="btn-view">View Details</button>
+                <button class="btn-cancel">Cancel</button>
+            </div>
+        </div>
+
+        <div class="reservation-card">
+            <div class="res-details">
+                <h4>Local Foothills Day Hike</h4>
+                <p>Company: Urban Explorers</p>
+                <p>Date: **Nov 25, 2025** | Guests: 1</p>
+            </div>
+            <div class="action-btns">
+                <span class="res-status status-pending">PENDING</span>
+                <button class="btn-view">Complete Payment</button>
+            </div>
+        </div>
+
+        <div class="reservation-card">
+            <div class="res-details">
+                <h4>Grand Canyon Rim-to-River Trek</h4>
+                <p>Company: Wilderness Treks Co.</p>
+                <p>Date: **Jul 10, 2025** | Guests: 3</p>
+            </div>
+            <div class="action-btns">
+                <span class="res-status status-completed">COMPLETED</span>
+                <button class="btn-view">Leave Review</button>
+            </div>
+        </div>
+
+    </main>
+    
+    <footer>
+        <p class="container">&copy; 2025 AdventureHub</p>
+    </footer>
+
+</body>
+</html>
