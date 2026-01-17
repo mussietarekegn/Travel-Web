@@ -1,238 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TravelGram - Home</title>
-    <link rel="stylesheet" href="../css/home.css" />
-  </head>
-  <body>
-    <!-- TOP NAVIGATION BAR -->
-    <header class="top-nav">
-      <div class="logo">TravelGram</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TravelGram - Home</title>
+  <link rel="stylesheet" href="../css/home.css" />
+</head>
 
-      <div class="search-bar">
-        <input type="text" placeholder="Search posts, users..." />
-        <button class="search-btn">🔍</button>
-      </div>
+<body>
 
-      <div class="nav-icons">
-        <button class="nav-btn">🏠</button>
-        <button class="nav-btn">➕</button>
-        <button class="nav-btn">❤️</button>
-        <button class="nav-btn">👤</button>
-      </div>
-    </header>
+<header class="top-nav">
+  <div class="logo">TravelGram</div>
 
-    <main class="feed">
-      <!-- Additional 10 Demo Posts -->
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=4" alt="Profile" />
-          <div class="username">Lily</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=4"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 88 likes</div>
-          <p><strong>Lily:</strong> Morning coffee by the lakeside ☕🏞️</p>
-          <div class="comments">
-            <p><strong>Tom:</strong> Looks so peaceful! 😌</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search posts, users..." />
+    <button class="search-btn">🔍</button>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=5" alt="Profile" />
-          <div class="username">Nina</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=5"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 142 likes</div>
-          <p><strong>Nina:</strong> Snowy adventures in the Alps ❄️⛷️</p>
-          <div class="comments">
-            <p><strong>Jack:</strong> Wow, wish I was there! 🤩</p>
-            <p><strong>Emma:</strong> Incredible view! 😍</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <div class="nav-icons">
+    <a href="home.html" class="nav-btn">🏠</a>
+    <a href="create_post.html" class="nav-btn">➕</a>
+    <a href="liked-posts.html" class="nav-btn">❤️</a>
+    <a href="profile.html" class="nav-btn">👤</a>
+  </div>
+</header>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=6" alt="Profile" />
-          <div class="username">Omar</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=6"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 63 likes</div>
-          <p><strong>Omar:</strong> Street food exploration 🍢🍜</p>
-          <div class="comments">
-            <p><strong>Aisha:</strong> Yummy! 😋</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+<main class="feed">
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=7" alt="Profile" />
-          <div class="username">Sara</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=7"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 105 likes</div>
-          <p><strong>Sara:</strong> Sunset sailing 🌅⛵</p>
-          <div class="comments">
-            <p><strong>Mike:</strong> So relaxing! 😎</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <!-- POST 1 -->
+  <div class="post" data-id="1">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=4">
+      <div class="username">Lily</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=4" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 88 likes</div>
+      <p><strong>Lily:</strong> Morning coffee by the lakeside ☕</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=8" alt="Profile" />
-          <div class="username">Leo</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=8"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 91 likes</div>
-          <p><strong>Leo:</strong> Hiking through dense forests 🌲🥾</p>
-          <div class="comments">
-            <p><strong>Amy:</strong> Adventure goals! 💪</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <!-- POST 2 -->
+  <div class="post" data-id="2">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=5">
+      <div class="username">Nina</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=5" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 142 likes</div>
+      <p><strong>Nina:</strong> Snowy adventures in the Alps ❄️</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=9" alt="Profile" />
-          <div class="username">Mia</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=9"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 78 likes</div>
-          <p><strong>Mia:</strong> Exploring ancient ruins 🏛️</p>
-          <div class="comments">
-            <p><strong>Chris:</strong> History lover! 🤓</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <!-- POST 3 -->
+  <div class="post" data-id="3">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=6">
+      <div class="username">Omar</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=6" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 63 likes</div>
+      <p><strong>Omar:</strong> Street food exploration 🍢🍜</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=10" alt="Profile" />
-          <div class="username">Ethan</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=10"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 110 likes</div>
-          <p><strong>Ethan:</strong> City skyline at night 🌃✨</p>
-          <div class="comments">
-            <p><strong>Lara:</strong> Stunning view! 😍</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <!-- POST 4 -->
+  <div class="post" data-id="4">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=7">
+      <div class="username">Sara</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=7" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 105 likes</div>
+      <p><strong>Sara:</strong> Sunset sailing 🌅⛵</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=11" alt="Profile" />
-          <div class="username">Zara</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=11"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 95 likes</div>
-          <p><strong>Zara:</strong> Road trip vibes 🚗🌄</p>
-          <div class="comments">
-            <p><strong>Ben:</strong> I need this in my life! 😄</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
+  <!-- POST 5 -->
+  <div class="post" data-id="5">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=8">
+      <div class="username">Leo</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=8" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 91 likes</div>
+      <p><strong>Leo:</strong> Hiking through dense forests 🌲🥾</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
 
-      <div class="post">
-        <div class="post-header">
-          <img src="https://i.pravatar.cc/42?img=12" alt="Profile" />
-          <div class="username">Kai</div>
-        </div>
-        <img
-          src="https://picsum.photos/500/300?random=12"
-          class="post-image"
-          alt="Travel Image"
-        />
-        <div class="post-body">
-          <div class="likes">❤️ 67 likes</div>
-          <p><strong>Kai:</strong> Camping under the stars ✨🏕️</p>
-          <div class="comments">
-            <p><strong>Sophie:</strong> Looks magical! 🌌</p>
-          </div>
-        </div>
-        <div class="post-actions">
-          <button class="like-btn">Like</button>
-          <button class="comment-btn">Comment</button>
-        </div>
-      </div>
-    </main>
-  </body>
+  <!-- POST 6 -->
+  <div class="post" data-id="6">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=9">
+      <div class="username">Mia</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=9" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 78 likes</div>
+      <p><strong>Mia:</strong> Exploring ancient ruins 🏛️</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
+
+  <!-- POST 7 -->
+  <div class="post" data-id="7">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=10">
+      <div class="username">Ethan</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=10" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 110 likes</div>
+      <p><strong>Ethan:</strong> City skyline at night 🌃✨</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
+
+  <!-- POST 8 -->
+  <div class="post" data-id="8">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/42?img=11">
+      <div class="username">Zara</div>
+    </div>
+    <img src="https://picsum.photos/500/300?random=11" class="post-image">
+    <div class="post-body">
+      <div class="likes">❤️ 95 likes</div>
+      <p><strong>Zara:</strong> Road trip vibes 🚗🌄</p>
+      <div class="comments"></div>
+    </div>
+    <div class="post-actions">
+      <button class="like-btn">Like</button>
+      <button class="comment-btn">Comment</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- COMMENT MODAL -->
+<div id="comment-modal" class="comment-modal hidden">
+  <div class="comment-box">
+    <h3 id="modal-title">Add Comment</h3>
+    <textarea id="comment-input"></textarea>
+    <div class="comment-actions">
+      <button id="save-comment">Save</button>
+      <button id="close-comment">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/home.js"></script>
+</body>
 </html>

@@ -1,105 +1,112 @@
-// =============================
-// HOME PAGE JAVASCRIPT
-// =============================
+const getData = (k, d) => JSON.parse(localStorage.getItem(k)) || d;
+const setData = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
-document.addEventListener("DOMContentLoaded", () => {
-  likePost();
-  commentPost();
-  searchPosts();
-  navigation();
+let likes = getData("likes", {});
+let comments = getData("comments", {});
+let activePost = null;
+let editIndex = null;
+
+/* LIKE SYSTEM */
+document.querySelectorAll(".post").forEach(post => {
+  const id = post.dataset.id;
+  const likeBtn = post.querySelector(".like-btn");
+  const likesText = post.querySelector(".likes");
+  let count = parseInt(likesText.textContent.match(/\d+/)[0]);
+
+  if (likes[id]) {
+    likeBtn.classList.add("liked");
+    likesText.textContent = `❤️ ${count + 1} likes`;
+  }
+
+  likeBtn.onclick = () => {
+    likes[id] = !likes[id];
+    likeBtn.classList.toggle("liked");
+    count += likes[id] ? 1 : -1;
+    likesText.textContent = `❤️ ${count} likes`;
+    setData("likes", likes);
+  };
 });
 
-// =============================
-// LIKE BUTTON FUNCTIONALITY
-// =============================
-function likePost() {
-  const likeButtons = document.querySelectorAll(".like-btn");
+/* COMMENT MODAL */
+const modal = document.getElementById("comment-modal");
+const input = document.getElementById("comment-input");
 
-  likeButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const post = btn.closest(".post");
-      const likesDiv = post.querySelector(".likes");
+document.querySelectorAll(".comment-btn").forEach(btn => {
+  btn.onclick = () => {
+    activePost = btn.closest(".post").dataset.id;
+    editIndex = null;
+    input.value = "";
+    modal.classList.remove("hidden");
+  };
+});
 
-      let likes = parseInt(likesDiv.textContent.match(/\d+/)[0]);
+document.getElementById("close-comment").onclick = () =>
+  modal.classList.add("hidden");
 
-      if (btn.classList.contains("liked")) {
-        likes--;
-        btn.classList.remove("liked");
-        btn.textContent = "Like";
-      } else {
-        likes++;
-        btn.classList.add("liked");
-        btn.textContent = "Liked ❤️";
-      }
+document.getElementById("save-comment").onclick = () => {
+  if (!input.value.trim()) return;
 
-      likesDiv.textContent = `❤️ ${likes} likes`;
-    });
+  comments[activePost] = comments[activePost] || [];
+
+  if (editIndex !== null) {
+    comments[activePost][editIndex] = input.value;
+  } else {
+    comments[activePost].push(input.value);
+  }
+
+  setData("comments", comments);
+  renderComments(activePost);
+  modal.classList.add("hidden");
+};
+
+/* RENDER COMMENTS */
+function renderComments(postId) {
+  const box = document.querySelector(`.post[data-id="${postId}"] .comments`);
+  box.innerHTML = "";
+
+  (comments[postId] || []).forEach((text, index) => {
+    const p = document.createElement("p");
+
+    p.innerHTML = `
+      <strong>You:</strong> ${text}
+      <span class="comment-controls">
+        <button class="edit-comment" data-index="${index}">Edit</button>
+        <button class="delete-comment" data-index="${index}">Delete</button>
+      </span>
+    `;
+
+    box.appendChild(p);
+  });
+
+  /* EDIT */
+  box.querySelectorAll(".edit-comment").forEach(btn => {
+    btn.onclick = () => {
+      editIndex = btn.dataset.index;
+      input.value = comments[postId][editIndex];
+      modal.classList.remove("hidden");
+    };
+  });
+
+  /* DELETE */
+  box.querySelectorAll(".delete-comment").forEach(btn => {
+    btn.onclick = () => {
+      const i = btn.dataset.index;
+      comments[postId].splice(i, 1);
+      setData("comments", comments);
+      renderComments(postId);
+    };
   });
 }
 
-// =============================
-// COMMENT BUTTON FUNCTIONALITY
-// =============================
-function commentPost() {
-  const commentButtons = document.querySelectorAll(".comment-btn");
+/* LOAD SAVED COMMENTS */
+Object.keys(comments).forEach(renderComments);
 
-  commentButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const post = btn.closest(".post");
-      const commentsDiv = post.querySelector(".comments");
-
-      const commentText = prompt("Enter your comment:");
-      if (commentText && commentText.trim() !== "") {
-        const p = document.createElement("p");
-        p.innerHTML = `<strong>You:</strong> ${commentText}`;
-        commentsDiv.appendChild(p);
-      }
-    });
+/* SEARCH */
+document.querySelector(".search-bar input").oninput = e => {
+  const term = e.target.value.toLowerCase();
+  document.querySelectorAll(".post").forEach(post => {
+    post.style.display = post.innerText.toLowerCase().includes(term)
+      ? "block"
+      : "none";
   });
-}
-
-// =============================
-// SEARCH POSTS
-// =============================
-function searchPosts() {
-  const searchInput = document.querySelector(".search-bar input");
-
-  searchInput.addEventListener("keyup", () => {
-    const filter = searchInput.value.toLowerCase();
-    const posts = document.querySelectorAll(".post");
-
-    posts.forEach((post) => {
-      const username = post.querySelector(".username").textContent.toLowerCase();
-      const text = post.textContent.toLowerCase();
-
-      if (username.includes(filter) || text.includes(filter)) {
-        post.style.display = "flex";
-      } else {
-        post.style.display = "none";
-      }
-    });
-  });
-}
-
-// =============================
-// NAVIGATION BUTTONS
-// =============================
-function navigation() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-
-  navButtons[0].addEventListener("click", () => {
-    window.location.href = "home.html";
-  });
-
-  navButtons[1].addEventListener("click", () => {
-    window.location.href = "create_post.html";
-  });
-
-  navButtons[2].addEventListener("click", () => {
-    alert("Likes page coming soon!");
-  });
-
-  navButtons[3].addEventListener("click", () => {
-    window.location.href = "profile.html";
-  });
-}
+};
