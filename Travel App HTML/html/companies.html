@@ -3,116 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/companies.css">
     <title>Tour Company Directory | AdventureHub</title>
-    <style>
-        /* --- Base Styles --- */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
-        header { background-color: #007bff; color: white; padding: 20px 0; text-align: center; }
-        header nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        h1 { margin: 0; }
-
-        /* --- Search & Filter Bar --- */
-        .filter-bar { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 30px; 
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .filter-bar input[type="text"], .filter-bar select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            flex-grow: 1; /* Allow search input to take more space */
-            margin-right: 15px;
-        }
-        .filter-bar button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* --- Company Grid & Cards --- */
-        .company-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .company-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            padding: 20px;
-            transition: transform 0.2s;
-            text-align: center;
-        }
-        .company-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
-        .company-logo-small {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid #007bff;
-        }
-        .company-card h3 {
-            margin: 0 0 10px 0;
-            color: #007bff;
-        }
-        .view-btn {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 15px;
-        }
-    </style>
+    
 </head>
 <body>
     <header>
         <h1>Tour Company Directory</h1>
         <nav>
-            <a href="home.html">Tours</a> | 
-            <a href="companies.html">Companies</a> | 
+            <a href="home.html">Tours</a>
+            <a href="companies.html">Companies</a>
             <a href="notifications.html">My Reservations</a>
         </nav>
     </header>
 
     <main class="container">
         <section class="filter-bar">
-            <input type="text" placeholder="Search by Company Name...">
-            <select>
+            <input type="text" id="search-input" placeholder="Search by Company Name...">
+            <select id="region-filter">
                 <option value="">Filter by Region</option>
                 <option value="asia">Asia</option>
                 <option value="europe">Europe</option>
                 <option value="na">North America</option>
             </select>
-            <select>
+            <select id="sort-filter">
                 <option value="">Sort by Rating</option>
                 <option value="highest">Highest Rating</option>
                 <option value="most_tours">Most Tours</option>
             </select>
-            <button>Apply Filters</button>
+            <button id="apply-filters">Apply Filters</button>
         </section>
 
-        <h2>Showing 12 of 35 Registered Companies</h2>
+        <h2 id="showing-text">Showing 12 of 35 Registered Companies</h2>
 
-        <div class="company-grid">
+        <div class="company-grid" id="company-grid">
             
-            <div class="company-card">
-                <img src="logo_placeholder.png" alt="Wilderness Treks Logo" class="company-logo-small">
+            <div class="company-card" data-region="na" data-rating="4.8" data-tours="8">
+                <img src="../images/WildlandTrekking.png" alt="Wilderness Treks Logo" class="company-logo-small">
                 <h3>Wilderness Treks Co.</h3>
                 <p>⭐ 4.8/5 Rating</p>
                 <p>Specialty: Mountain Expeditions</p>
@@ -120,8 +47,8 @@
                 <a href="company_profile.html?id=1" class="view-btn">View Profile</a>
             </div>
 
-            <div class="company-card">
-                <img src="logo_placeholder2.png" alt="Coastal Cruises Logo" class="company-logo-small">
+            <div class="company-card" data-region="europe" data-rating="4.5" data-tours="5">
+                <img src="../images/Coastal_Cruises_Logo.jpg" alt="Coastal Cruises Logo" class="company-logo-small">
                 <h3>Coastal Cruises Ltd.</h3>
                 <p>⭐ 4.5/5 Rating</p>
                 <p>Specialty: Luxury Yacht & Sailing</p>
@@ -129,8 +56,8 @@
                 <a href="company_profile.html?id=2" class="view-btn">View Profile</a>
             </div>
             
-            <div class="company-card">
-                <img src="logo_placeholder3.png" alt="Urban Explorers Logo" class="company-logo-small">
+            <div class="company-card" data-region="asia" data-rating="4.2" data-tours="12">
+                <img src="../images/Urban Explorer.webp" alt="Urban Explorers Logo" class="company-logo-small">
                 <h3>Urban Explorers</h3>
                 <p>⭐ 4.2/5 Rating</p>
                 <p>Specialty: City History & Food</p>
@@ -138,8 +65,8 @@
                 <a href="company_profile.html?id=3" class="view-btn">View Profile</a>
             </div>
             
-            <div class="company-card">
-                <img src="logo_placeholder4.png" alt="Safari Adventures Logo" class="company-logo-small">
+            <div class="company-card" data-region="na" data-rating="4.9" data-tours="4">
+                <img src="../images/Safari Adventure.png" alt="Safari Adventures Logo" class="company-logo-small">
                 <h3>Safari Adventures</h3>
                 <p>⭐ 4.9/5 Rating</p>
                 <p>Specialty: Wildlife Photography</p>
@@ -147,11 +74,14 @@
                 <a href="company_profile.html?id=4" class="view-btn">View Profile</a>
             </div>
 
-            </div>
+        </div>
     </main>
 
     <footer>
         <p class="container">&copy; 2025 AdventureHub</p>
     </footer>
+
+    <script src="../js/companies.js"></script>
+
 </body>
 </html>

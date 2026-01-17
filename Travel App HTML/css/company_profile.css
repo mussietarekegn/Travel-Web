@@ -50,6 +50,24 @@ header nav a:hover {
     transform: scale(1.05);
 }
 
+/* Back Button */
+.back-btn {
+    background-color: #222222;
+    color: #c1f0c1;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #1f8f4b;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
 /* Company Header */
 .company-header {
     text-align: center;

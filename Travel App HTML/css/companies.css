@@ -56,7 +56,6 @@ header nav a:hover {
     transform: scale(1.05);
 }
 
-
 .filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -105,7 +104,6 @@ header nav a:hover {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
 }
-
 
 .company-card {
     background-color: #1e1e1e;
@@ -157,7 +155,6 @@ header nav a:hover {
     transform: scale(1.05);
 }
 
-
 footer {
     background-color: #1a1a1a;
     color: #c1f0c1;
@@ -167,11 +164,11 @@ footer {
     margin-top: 30px;
 }
 
-
 @media (max-width: 768px) {
     header nav {
         flex-direction: column;
         align-items: center;
+        gap: 5px;
     }
 
     .filter-bar {

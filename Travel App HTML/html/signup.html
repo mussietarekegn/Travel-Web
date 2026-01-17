@@ -1,5 +1,39 @@
-<!-- signup.html -->
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/signup.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <div class="error-message" id="error-message" style="display: none;"></div>
+    <form action="/signup" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="password" name="password" required>
+            <span class="toggle-password" id="toggle-password">Show</span>
+        </div>
+        <label for="confirm-password">Confirm Password:</label>
+        <div style="position: relative;">
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <span class="toggle-password" id="toggle-confirm">Show</span>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+    <script src="../js/signup.js"></script>
+</body>
+</html>
+
+
+<!-- signup.html -->
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,4 +59,4 @@
     </form>
     <p>Already have an account? <a href="login.html">Login</a></p>
 </body>
-</html>
+</html> -->

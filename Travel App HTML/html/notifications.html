@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/notifications.css">
     <title>My Notifications & Reservations | AdventureHub</title>
 </head>
 <body>
@@ -17,19 +18,19 @@
     <main class="container">
         <h2>Your Notifications & Bookings</h2>
 
-        <div class="alert alert-success" id="payment-confirmation" style="display: block;">
-            ✅ **Payment Confirmed!** Your reservation (#12345) for the Alps Trek is fully secured. An email confirmation has been sent.
+        <div class="alert alert-success" id="payment-confirmation" style="display: none;">
+            ✅ <strong>Payment Confirmed!</strong> Your reservation (#12345) for the Alps Trek is fully secured. An email confirmation has been sent.
         </div>
 
         <hr>
 
         <h3>Upcoming Reservations (3)</h3>
 
-        <div class="reservation-card">
+        <div class="reservation-card" data-res-id="1">
             <div class="res-details">
                 <h4>Patagonia Ice Fields Expedition</h4>
                 <p>Company: Wilderness Treks Co.</p>
-                <p>Date: **Dec 15, 2025** | Guests: 2</p>
+                <p>Date: <strong>Dec 15, 2025</strong> | Guests: 2</p>
             </div>
             <div class="action-btns">
                 <span class="res-status status-confirmed">CONFIRMED</span>
@@ -38,11 +39,11 @@
             </div>
         </div>
 
-        <div class="reservation-card">
+        <div class="reservation-card" data-res-id="2">
             <div class="res-details">
                 <h4>Local Foothills Day Hike</h4>
                 <p>Company: Urban Explorers</p>
-                <p>Date: **Nov 25, 2025** | Guests: 1</p>
+                <p>Date: <strong>Nov 25, 2025</strong> | Guests: 1</p>
             </div>
             <div class="action-btns">
                 <span class="res-status status-pending">PENDING</span>
@@ -50,11 +51,11 @@
             </div>
         </div>
 
-        <div class="reservation-card">
+        <div class="reservation-card" data-res-id="3">
             <div class="res-details">
                 <h4>Grand Canyon Rim-to-River Trek</h4>
                 <p>Company: Wilderness Treks Co.</p>
-                <p>Date: **Jul 10, 2025** | Guests: 3</p>
+                <p>Date: <strong>Jul 10, 2025</strong> | Guests: 3</p>
             </div>
             <div class="action-btns">
                 <span class="res-status status-completed">COMPLETED</span>
@@ -68,5 +69,6 @@
         <p class="container">&copy; 2025 AdventureHub</p>
     </footer>
 
+    <script src="../js/notifications.js"></script>
 </body>
 </html>
