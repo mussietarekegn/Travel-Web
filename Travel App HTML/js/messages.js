@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ===== DOM ELEMENTS =====
   const messageInput = document.getElementById("messageInput");
   const sendBtn = document.getElementById("sendBtn");
   const messagesBox = document.querySelector(".messages");
@@ -8,32 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const blockBtn = document.getElementById("blockBtn");
   const clearBtn = document.getElementById("clearBtn");
 
-  function closePanels() {
-    sidebar.classList.remove("open");
-    details.classList.remove("open");
-  }
+  const sidebar = document.querySelector(".sidebar");
+  const details = document.querySelector(".details");
 
-  messagesBox.addEventListener("click", () => {
-    closePanels();
-  });
-  
-  messageInput.addEventListener("focus", () => {
-    closePanels();
-  });
+  const STORAGE_KEY = "chatAppData";
 
-  messageInput.addEventListener("input", () => {
-    closePanels();
-  });
-
-  messagesBox.addEventListener("scroll", () => {
-    closePanels();
-  });
-
-
-  // ===== CHAT STATE =====
-  let activeChat = "John Doe";
-
-  const chatData = {
+  // ===== CHAT DATA =====
+  let chatData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
     "John Doe": {
       messages: [
         { text: "Hey! How are you?", type: "incoming" },
@@ -58,21 +40,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // ===== FUNCTIONS =====
+  let activeChat = "John Doe"; // ✅ MUST come before using it
 
+  function saveChatData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(chatData));
+  }
+
+  // ===== PANEL FUNCTIONS =====
+  function closePanels() {
+    sidebar.classList.remove("open");
+    details.classList.remove("open");
+  }
+
+  // ===== RENDER FUNCTIONS =====
   function renderMessages() {
     messagesBox.innerHTML = "";
-
     chatData[activeChat].messages.forEach(msg => {
       const div = document.createElement("div");
       div.className = `message ${msg.type}`;
       div.textContent = msg.text;
       messagesBox.appendChild(div);
     });
-
     messagesBox.scrollTop = messagesBox.scrollHeight;
   }
 
+  function updateChatStatus() {
+    const statusEl = document.getElementById("chatStatus");
+    statusEl.textContent = chatData[activeChat].blocked
+      ? "Blocked"
+      : chatData[activeChat].muted
+      ? "Muted"
+      : "Online";
+
+    statusEl.className = "status " + (chatData[activeChat].blocked ? "" : "online");
+  }
+
+  function switchChat(chatName) {
+    activeChat = chatName;
+
+    // Highlight active chat
+    chatItems.forEach(item => item.classList.remove("active"));
+    document.querySelector(`.chat-item[data-chat="${chatName}"]`).classList.add("active");
+
+    // Update header
+    document.getElementById("chatTitle").textContent = chatName;
+    const initials = chatName.split(" ").map(w => w[0]).join("").toUpperCase();
+    document.getElementById("chatAvatar").textContent = initials;
+    document.getElementById("detailsName").textContent = chatName;
+    document.getElementById("detailsAvatar").textContent = initials;
+
+    updateChatStatus();
+    renderMessages();
+    closePanels();
+  }
+
+  // ===== SEND MESSAGE =====
   function sendMessage() {
     const text = messageInput.value.trim();
     if (!text) return;
@@ -82,118 +104,61 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (chatData[activeChat].muted) {
-      alert("This chat is muted.");
-      return;
-    }
-
-    chatData[activeChat].messages.push({
-      text,
-      type: "outgoing"
-    });
-
+    chatData[activeChat].messages.push({ text, type: "outgoing" });
     messageInput.value = "";
     renderMessages();
-
+    saveChatData();
     closePanels();
   }
 
-  function switchChat(chatName) {
-  activeChat = chatName;
-
-  // Highlight active chat
-  chatItems.forEach(item => item.classList.remove("active"));
-  document
-    .querySelector(`.chat-item[data-chat="${chatName}"]`)
-    .classList.add("active");
-
-  // Update header title
-  document.getElementById("chatTitle").textContent = chatName;
-
-  // Update avatar initials
-  const initials = chatName
-    .split(" ")
-    .map(word => word[0])
-    .join("")
-    .toUpperCase();
-
-  document.getElementById("chatAvatar").textContent = initials;
-
-  // Update status text
-  const statusEl = document.getElementById("chatStatus");
-  statusEl.textContent =
-    chatData[chatName].blocked
-      ? "Blocked"
-      : chatData[chatName].muted
-      ? "Muted"
-      : "Online";
-
-  statusEl.className = "status " +
-    (chatData[chatName].blocked ? "" : "online");
-
-  document.getElementById("detailsName").textContent = chatName;
-  document.getElementById("detailsAvatar").textContent = initials;
-
-  renderMessages();
-
-  closePanels();
-}
-
-// ===== MOBILE PANELS =====
-const sidebar = document.querySelector(".sidebar");
-const details = document.querySelector(".details");
-
-document.getElementById("openSidebar").addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-  details.classList.remove("open");
-});
-
-document.getElementById("openDetails").addEventListener("click", () => {
-  details.classList.toggle("open");
-  sidebar.classList.remove("open");
-});
-
-// Close sidebar after selecting chat (mobile UX)
-chatItems.forEach(item => {
-  item.addEventListener("click", () => {
-    sidebar.classList.remove("open");
-  });
-});
-
   // ===== EVENTS =====
-
   sendBtn.addEventListener("click", sendMessage);
-
   messageInput.addEventListener("keydown", e => {
     if (e.key === "Enter") sendMessage();
   });
 
   chatItems.forEach(item => {
-    item.addEventListener("click", () => {
-      switchChat(item.dataset.chat);
-    });
+    item.addEventListener("click", () => switchChat(item.dataset.chat));
   });
 
   muteBtn.addEventListener("click", () => {
     chatData[activeChat].muted = !chatData[activeChat].muted;
-    muteBtn.textContent = chatData[activeChat].muted
-      ? "Unmute Chat"
-      : "Mute Chat";
+    muteBtn.textContent = chatData[activeChat].muted ? "Unmute Chat" : "Mute Chat";
+    updateChatStatus();
+    saveChatData();
   });
 
   blockBtn.addEventListener("click", () => {
     chatData[activeChat].blocked = !chatData[activeChat].blocked;
-    blockBtn.textContent = chatData[activeChat].blocked
-      ? "Unblock User"
-      : "Block User";
+    blockBtn.textContent = chatData[activeChat].blocked ? "Unblock User" : "Block User";
+    updateChatStatus();
+    saveChatData();
   });
 
   clearBtn.addEventListener("click", () => {
     if (!confirm("Clear all messages in this chat?")) return;
     chatData[activeChat].messages = [];
     renderMessages();
+    saveChatData();
   });
 
-  // ===== INIT =====
+  // ===== MOBILE PANELS =====
+  document.getElementById("openSidebar").addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    details.classList.remove("open");
+  });
+
+  document.getElementById("openDetails").addEventListener("click", () => {
+    details.classList.toggle("open");
+    sidebar.classList.remove("open");
+  });
+
+  messagesBox.addEventListener("click", closePanels);
+  messageInput.addEventListener("focus", closePanels);
+  messageInput.addEventListener("input", closePanels);
+  messagesBox.addEventListener("scroll", closePanels);
+
+  // ===== INITIAL RENDER =====
   renderMessages();
+  updateChatStatus();
 });
