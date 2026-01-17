@@ -1,82 +1,103 @@
-
 * {
-  margin: 0;
-  padding: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 200;
   box-sizing: border-box;
 }
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f8;
-  color: #333;
+  background-color: #000;   /* Black background */
+  color: #fff;              /* Default text = White */
   line-height: 1.6;
   padding: 20px;
 }
+.profile-info{
+  text-align: center;
+  margin-bottom: 40px;
+}
 nav {
-  background-color: #1f2933;
+  background-color: #000;   /* Black navbar */
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 30px;
   display: flex;
   gap: 20px;
+  border-bottom: 1px solid #66ff66; /* Light green accent */
 }
 
 nav a {
-  color: #ffffff;
+  color: #66ff66;           /* Light green nav text */
   text-decoration: none;
   font-weight: 500;
 }
 
 nav a:hover {
   text-decoration: underline;
-  color: #facc15;
+  color: #ffffff;           /* White on hover */
 }
+
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  color: #66ff66;           /* Light green heading */
 }
 
 p {
   margin-bottom: 10px;
   font-size: 1rem;
+  color: #ffffff;           /* White normal text */
 }
+
 a {
-  color: #2563eb;
+  color: #66ff66;           /* Light green links */
 }
+
 a:hover {
-  color: #1e40af;
+  color: #55dd55;           /* Slightly darker green on hover */
 }
+
 h2 {
   margin-top: 40px;
   margin-bottom: 20px;
   font-size: 2rem;
-  border-bottom: 3px solid #2563eb;
+  border-bottom: 3px solid #66ff66; /* Light green underline */
   display: inline-block;
   padding-bottom: 5px;
+  color: #66ff66;
 }
+
 h3 {
   margin-top: 30px;
   margin-bottom: 10px;
   font-size: 1.5rem;
+  color: #66ff66;
 }
+
 img {
+  width: 100%;
+  max-width: 100%;
   margin-top: 10px;
   border-radius: 10px;
   max-width: 100%;
   height: auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(102, 255, 102, 0.15); /* Light green shadow */
 }
+
 h3,
 h3 + p,
 h3 + p + img {
-  background-color: #ffffff;
+  background-color: #111;   /* Dark card background */
   padding: 15px;
   border-radius: 10px;
+  color: #fff;              /* White text inside cards */
+  margin-bottom: 30px;
 }
 
 /* Space between posts */
 h3 + p + img {
   margin-bottom: 20px;
 }
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -86,4 +107,9 @@ h3 + p + img {
   h1 {
     font-size: 2rem;
   }
+}
+
+/* Icons (if any) */
+i {
+  color: #66ff66;
 }
