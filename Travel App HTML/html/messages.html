@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Messaging Page</title>
+    <link rel="stylesheet" href="../css/messages.css" />
+    <script src="../js/messages.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h2>Messages</h2>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="chat-layout">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+          <div class="avatar">MM</div>
+          <div>
+            <div class="username">Mera</div>
+            <div class="status online">Online</div>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <input class="search" type="text" placeholder="Search chats" />
+
+        <!-- Chat List -->
+        <div class="chat-list">
+          <div class="chat-item active" data-chat="John Doe">
+            <strong>John Doe</strong>
+            <span>Hey, are you free?</span>
+          </div>
+
+          <div class="chat-item" data-chat="Group Chat">
+            <strong>Group Chat</strong>
+            <span>You: Sure, let's go.</span>
+          </div>
+
+          <div class="chat-item" data-chat="Alex">
+            <strong>Alex</strong>
+            <span>Typing...</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CHAT -->
+      <main class="chat-main">
+        <!-- Chat Header -->
+        <div class="chat-header">
+          <div id="chatAvatar" class="avatar">JD</div>
+          <div>
+            <strong id="chatTitle">John Doe</strong>
+            <div id="chatStatus" class="status online">Online</div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="messages">
+          <div class="message incoming">Hey! How are you?</div>
+
+          <div class="message outgoing">I'm good, you?</div>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input">
+          <input
+            id="messageInput"
+            type="text"
+            placeholder="Type a message..."
+          />
+          <button id="sendBtn" type="button">Send</button>
+        </div>
+      </main>
+
+      <!-- RIGHT PANEL -->
+      <aside class="details">
+        <h3>Chat Details</h3>
+
+        <div class="user-info">
+          <div id="detailsAvatar" class="avatar">JD</div>
+          <div>
+            <strong id="detailsName">John Doe</strong>
+            <div id="detailsStatus" class="status">Last seen 5 mins ago</div>
+          </div>
+        </div>
+
+        <hr />
+
+        <h4>Bio</h4>
+        <p>No shared bio yet.</p>
+
+        <hr />
+
+        <h4>Actions</h4>
+        <button id="muteBtn" class="danger">Mute Chat</button>
+        <button id="blockBtn" class="danger">Block User</button>
+        <button id="clearBtn" class="danger">Clear Chat</button>
+      </aside>
+    </div>
+  </body>
+</html>
