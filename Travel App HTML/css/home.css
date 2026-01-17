@@ -180,3 +180,23 @@ textarea {
   color: white;
   border: 1px solid #2ecc71;
 }
+.nav-btn img.nav-icon {
+    width: 24px;      /* same size as emoji icons */
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Optional: center all icons uniformly */
+.nav-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;   /* space between icons */
+}
+.nav-btn img.nav-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    filter: invert(100%); /* turns black to white */
+}
+
