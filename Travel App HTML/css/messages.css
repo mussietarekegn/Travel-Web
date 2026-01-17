@@ -8,6 +8,91 @@
   --radius: 12px;
 }
 
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--card-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left section */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link:focus{
+  outline: none;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--green);
+}
+
+/* Navigation links */
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  opacity: 0.85;
+  transition: 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--green);
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: var(--green);
+  border-radius: 2px;
+}
+
+/* Right section */
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.nav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--black);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-username {
+  font-weight: 600;
+}
+
 /* Reset */
 * {
   box-sizing: border-box;
@@ -261,3 +346,12 @@ body {
   }
 }
 
+@media (max-width: 700px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-username {
+    display: none; /* avatar only */
+  }
+}
