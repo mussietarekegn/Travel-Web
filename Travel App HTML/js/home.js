@@ -36,3 +36,24 @@ function likePost() {
     });
   });
 }
+
+// =============================
+// COMMENT BUTTON FUNCTIONALITY
+// =============================
+function commentPost() {
+  const commentButtons = document.querySelectorAll(".comment-btn");
+
+  commentButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const post = btn.closest(".post");
+      const commentsDiv = post.querySelector(".comments");
+
+      const commentText = prompt("Enter your comment:");
+      if (commentText && commentText.trim() !== "") {
+        const p = document.createElement("p");
+        p.innerHTML = `<strong>You:</strong> ${commentText}`;
+        commentsDiv.appendChild(p);
+      }
+    });
+  });
+}
