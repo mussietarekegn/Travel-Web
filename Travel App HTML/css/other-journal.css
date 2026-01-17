@@ -1,0 +1,101 @@
+/* Reset default margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;   /* Black background */
+  color: #fff;              /* Default text = white */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Navbar */
+nav {
+  background-color: #111;   /* Dark navbar */
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #66ff66; /* Light green bottom line */
+}
+
+nav a {
+  color: #66ff66;           /* Green nav text */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #fff;              /* White on hover */
+  text-decoration: underline;
+}
+
+/* Page heading */
+h2 {
+  font-size: 2rem;
+  color: #66ff66;           /* Green heading */
+  margin-bottom: 25px;
+  border-bottom: 2px solid #66ff66;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Post headings */
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #66ff66;           /* Green post title */
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #fff;              /* White text */
+}
+
+/* Post images */
+img {
+  display: block;
+  width: 100%;              /* Full width of content */
+  max-width: 600px;         /* Optional max width */
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 8px 20px rgba(102, 255, 102, 0.15);
+}
+
+/* Italic text (author names) */
+em {
+  color: #ccc;              /* Slightly lighter gray for author */
+}
+
+/* Icons or emojis */
+i, span.icon {
+  color: #66ff66;           /* Green icons */
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
