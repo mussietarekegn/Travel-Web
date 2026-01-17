@@ -29,6 +29,19 @@ header {
     z-index: 1000;
 }
 
+.logo {
+  color: #2ecc71;
+  font-size: 22px;
+  font-weight: bold;
+  /* text-decoration: none; */
+  margin-left: 20px;
+}
+
+header a{
+    text-decoration: none;
+    color: inherit;
+}
+
 header nav {
     display: flex;
     justify-content: center;
