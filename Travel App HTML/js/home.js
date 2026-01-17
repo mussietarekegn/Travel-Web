@@ -80,3 +80,26 @@ function searchPosts() {
     });
   });
 }
+
+// =============================
+// NAVIGATION BUTTONS
+// =============================
+function navigation() {
+  const navButtons = document.querySelectorAll(".nav-btn");
+
+  navButtons[0].addEventListener("click", () => {
+    window.location.href = "home.html";
+  });
+
+  navButtons[1].addEventListener("click", () => {
+    window.location.href = "create_post.html";
+  });
+
+  navButtons[2].addEventListener("click", () => {
+    alert("Likes page coming soon!");
+  });
+
+  navButtons[3].addEventListener("click", () => {
+    window.location.href = "profile.html";
+  });
+}
