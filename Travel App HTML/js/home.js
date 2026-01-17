@@ -57,3 +57,26 @@ function commentPost() {
     });
   });
 }
+
+// =============================
+// SEARCH POSTS
+// =============================
+function searchPosts() {
+  const searchInput = document.querySelector(".search-bar input");
+
+  searchInput.addEventListener("keyup", () => {
+    const filter = searchInput.value.toLowerCase();
+    const posts = document.querySelectorAll(".post");
+
+    posts.forEach((post) => {
+      const username = post.querySelector(".username").textContent.toLowerCase();
+      const text = post.textContent.toLowerCase();
+
+      if (username.includes(filter) || text.includes(filter)) {
+        post.style.display = "flex";
+      } else {
+        post.style.display = "none";
+      }
+    });
+  });
+}
