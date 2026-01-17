@@ -8,6 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const blockBtn = document.getElementById("blockBtn");
   const clearBtn = document.getElementById("clearBtn");
 
+  function closePanels() {
+    sidebar.classList.remove("open");
+    details.classList.remove("open");
+  }
+
+  messagesBox.addEventListener("click", () => {
+    closePanels();
+  });
+  
+  messageInput.addEventListener("focus", () => {
+    closePanels();
+  });
+
+  messageInput.addEventListener("input", () => {
+    closePanels();
+  });
+
+  messagesBox.addEventListener("scroll", () => {
+    closePanels();
+  });
+
+
   // ===== CHAT STATE =====
   let activeChat = "John Doe";
 
@@ -72,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     messageInput.value = "";
     renderMessages();
+
+    closePanels();
   }
 
   function switchChat(chatName) {
@@ -111,8 +135,30 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("detailsAvatar").textContent = initials;
 
   renderMessages();
+
+  closePanels();
 }
 
+// ===== MOBILE PANELS =====
+const sidebar = document.querySelector(".sidebar");
+const details = document.querySelector(".details");
+
+document.getElementById("openSidebar").addEventListener("click", () => {
+  sidebar.classList.toggle("open");
+  details.classList.remove("open");
+});
+
+document.getElementById("openDetails").addEventListener("click", () => {
+  details.classList.toggle("open");
+  sidebar.classList.remove("open");
+});
+
+// Close sidebar after selecting chat (mobile UX)
+chatItems.forEach(item => {
+  item.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+  });
+});
 
   // ===== EVENTS =====
 

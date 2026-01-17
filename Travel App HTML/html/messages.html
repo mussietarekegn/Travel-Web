@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Messaging Page</title>
     <link rel="stylesheet" href="../css/messages.css" />
-    <script src="../js/messages.js"></script>
   </head>
 
   <body>
@@ -52,11 +51,15 @@
       <main class="chat-main">
         <!-- Chat Header -->
         <div class="chat-header">
+          <button class="icon-btn" id="openSidebar">☰</button>
+
           <div id="chatAvatar" class="avatar">JD</div>
           <div>
             <strong id="chatTitle">John Doe</strong>
             <div id="chatStatus" class="status online">Online</div>
           </div>
+
+          <button class="icon-btn right" id="openDetails">ℹ</button>
         </div>
 
         <!-- Messages -->
@@ -102,5 +105,6 @@
         <button id="clearBtn" class="danger">Clear Chat</button>
       </aside>
     </div>
+    <script src="../js/messages.js"></script>
   </body>
 </html>
